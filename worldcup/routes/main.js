@@ -7,8 +7,12 @@ const mongoClient = require("mongodb").MongoClient;
 const app = express();
 app.use(margan("dev"));
 
+HOST = process.env.MongoDB_Hostname;
+USERNAME = process.env.MongoDB_Username;
+PASSWORD = process.env.MongoDB_Password;
+
 var db;
-var databaseUrl = "mongodb://13.124.198.232:27017";
+var databaseUrl = `mongodb://${USERNAME}:${PASSWORD}@${HOST}:27017`;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname, "./index.html");
